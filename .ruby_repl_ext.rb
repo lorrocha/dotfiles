@@ -1,5 +1,7 @@
 # Ruby repl extensions (irb/pry)
 
+require '~/.dotfiles/.colorizer'
+
 %w(rubygems pp awesome_print interactive_editor).each do |gem|
   begin
     require gem
@@ -8,6 +10,9 @@
 end
 
 class String
+  # Add pretty colors to terminal output for debugging
+  include Colorizer
+
   # This extension adds a UNIX-style pipe to strings
   # => puts 'foobar' | 'wc'
   def |(cmd)
