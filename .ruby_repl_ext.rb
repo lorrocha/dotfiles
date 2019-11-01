@@ -51,13 +51,12 @@ end
 # Easy low cost benchmarking tools
 def benchmark
   t1 = Time.now
-  yield
-  "#{(Time.now - t1) * 1000}ms"
+  output = yield
+  ["#{(Time.now - t1) * 1000}ms", output]
 end
 
-def benchmark(label)
-  t1 = Time.now
-  output = yield
-  puts "#{label} : #{(Time.now - t1) * 1000}ms"
+def puts_benchmark(label, &block)
+  time, output = benchmark(&block)
+  puts "#{label} : #{time}ms"
   output
 end
