@@ -40,11 +40,24 @@ def clear
   system 'clear'
 end
 
-
 # Make all private methods public for the given object
 def make_public(obj)
   obj.private_methods.each do |method_name|
     obj.singleton_class.class_eval { public method_name }
   end
   obj
+end
+
+# Easy low cost benchmarking tools
+def benchmark
+  t1 = Time.now
+  yield
+  "#{(Time.now - t1) * 1000}ms"
+end
+
+def benchmark(label)
+  t1 = Time.now
+  output = yield
+  puts "#{label} : #{(Time.now - t1) * 1000}ms"
+  output
 end
