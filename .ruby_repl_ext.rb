@@ -28,6 +28,14 @@ class String
     self.public_send('|', 'pbcopy')
     self
   end
+
+  # word count for the string (only MacOs)
+  def word_count
+    puts "\\n      words  chars"
+    puts "---------------------"
+    puts self.public_send('|',"wc")
+    self
+  end
 end
 
 # Copy to system clipboard using pbcopy (only MacOs)
